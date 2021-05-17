@@ -1,7 +1,6 @@
 export default class Engine {
-  constructor(draw, update) {
-    this.frameRate = 30;
-    this.timePerFrame = 1000 / frameRate; // ms per frame
+  constructor(timePerFrame, draw, update) {
+    this.timePerFrame = timePerFrame; // ms per frame
 
     this.prevTime;
     this.lagTime;
@@ -13,23 +12,27 @@ export default class Engine {
   }
 
   startEngine() {
-    prevTime = Date.now();
-    lagTime = 0;
-    requestAnimationFrame(loop);
+    this.prevTime = Date.now();
+    this.lagTime = 0;
+    requestAnimationFrame(this.runLoop);
   }
 
-  loop() {
-    requestAnimationFrame(loop);
+  runLoop = (timestep) => {
+    this.loop(timestep);
+  };
 
-    curTime = Date.now();
-    elapsedTime = curTime - prevTime;
-    prevTime = curTime;
-    lagTime += elapsedTime;
+  loop() {
+    requestAnimationFrame(this.runLoop);
+
+    this.curTime = Date.now();
+    this.elapsedTime = this.curTime - this.prevTime;
+    this.prevTime = this.curTime;
+    this.lagTime += this.elapsedTime;
 
     // update # of times possible based lag time vs framerate
-    while (lagTime >= timePerFrame) {
+    while (this.lagTime >= this.timePerFrame) {
       this.updateFn();
-      lagTime -= this.timePerFrame;
+      this.lagTime -= this.timePerFrame;
     }
 
     this.drawFn();

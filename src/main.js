@@ -1,11 +1,16 @@
+import Display from './display.js';
 import Engine from './engine.js';
-const canvas = document.getElementById('gamefield');
-canvas.width = 800;
-canvas.height = 800;
-const ctx = canvas.getContext('2d');
 
-const draw = (ctx) => {
-  ctx.fillStyle = 'red';
-  ctx.fillRect(0, 0);
+const frameRate = 30;
+const timePerFrame = 1000 / frameRate; // ms per frame
+const display = new Display('gamefield');
+
+const draw = () => {
+  display.drawColor('red');
 };
-const engine = new Engine();
+
+const update = () => {};
+
+const engine = new Engine(timePerFrame, draw, update);
+
+engine.startEngine();
