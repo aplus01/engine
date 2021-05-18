@@ -2,23 +2,23 @@ export default class Controller {
   constructor() {
     this.inputs = {
       ArrowLeft: {
-        wasPressed: false,
+        // keyPressed: false,
         active: false,
       },
       ArrowRight: {
-        wasPressed: false,
+        // keyPressed: false,
         active: false,
       },
       ArrowUp: {
-        wasPressed: false,
+        // keyPressed: false,
         active: false,
       },
       ArrowDown: {
-        wasPressed: false,
+        // keyPressed: false,
         active: false,
       },
       Space: {
-        wasPressed: false,
+        // keyPressed: false,
         active: false,
       },
     };
@@ -35,7 +35,7 @@ export default class Controller {
 
     // true if key in event was recently pressed down
     // if it has been down then false
-    pressedKey.wasPressed = isKeyDown && !pressedKey.active;
+    // pressedKey.keyPressed = isKeyDown && !pressedKey.active;
 
     // is key in event currently down
     pressedKey.active = isKeyDown;
