@@ -13,6 +13,10 @@ export default class Controller {
         wasPressed: false,
         active: false,
       },
+      ArrowDown: {
+        wasPressed: false,
+        active: false,
+      },
       Space: {
         wasPressed: false,
         active: false,
