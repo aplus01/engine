@@ -2,13 +2,13 @@ export default class Engine {
   constructor(timePerFrame, draw, update) {
     this.timePerFrame = timePerFrame; // ms per frame
 
-    this.prevTime;
-    this.lagTime;
-    this.curTime;
-    this.elapsedTime;
+    this.prevTime; // ticks of last loop
+    this.lagTime; // number of ticks until next frame
+    this.curTime; // current number of ticks
+    this.elapsedTime; // number of ticks since last loop
 
-    this.drawFn = draw;
-    this.updateFn = update;
+    this.drawFn = draw; // function responsible for drawing game elements
+    this.updateFn = update; // function responsible for updating game elements position, speed,  etc.
   }
 
   startEngine() {
@@ -17,8 +17,8 @@ export default class Engine {
     requestAnimationFrame(this.runLoop);
   }
 
-  runLoop = (timestep) => {
-    this.loop(timestep);
+  runLoop = () => {
+    this.loop();
   };
 
   loop() {
